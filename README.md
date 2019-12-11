@@ -2,7 +2,10 @@
 
 ## WIP
 **NOTICE** currently only android is supported so if in a rush [react-native-inviewport](https://github.com/yamill/react-native-inviewport).
-Why not `react-native-inviewport`? It's `js` based. The library is native and can be used with `react-native-reanimated` or the react-native's own `Animated` API
+
+Why not `react-native-inviewport`? It's `js` based. This library is native and can be used with `react-native-reanimated` or react-native's own `Animated` API.
+
+PRs are welcome.
 
 ## Getting started
 
