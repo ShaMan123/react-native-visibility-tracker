@@ -1,8 +1,8 @@
 
-import React, { useMemo, useEffect, useRef, useState } from 'react';
-import { SectionListProps, FlatList, StyleSheet, processColor } from 'react-native';
-import VisibilityTracker, { VisibilityTrackerModule, VisibilityChangeEvent } from 'react-native-visibility-tracker';
+import React, { useMemo, useRef, useState } from 'react';
+import { FlatList, processColor, StyleSheet, ListRenderItemInfo } from 'react-native';
 import Animated, { Easing } from 'react-native-reanimated';
+import VisibilityTracker, { VisibilityChangeEvent } from 'react-native-visibility-tracker';
 
 const {
     event,
@@ -11,13 +11,19 @@ const {
 
 const AVisibilityTracker = createAnimatedComponent(VisibilityTracker);
 
-function VisiblityTrackerAnimatedItem(props: { index: number } = { index: 200 }) {
-    const isVisible = useMemo(() => new Value(0), []);
-    const opacity = useMemo(() => new Value(1), []);
+type pip = ListRenderItemInfo<{
+    isVisible: Animated.Value<number>,
+    opacity: Animated.Value<number>,
+    clock: Animated.Clock
+}>
 
-    const clock = useMemo(() => new Clock(), []);
 
-    useCode(() => debug(`${props.index} : `, isVisible), [props.index, isVisible]);
+function VisiblityTrackerAnimatedItem({ index, item: { clock, isVisible, opacity } }: pip) {
+    //    useCode(() => debug(`${index} : `, isVisible), [index, isVisible]);
+    const color = useMemo(() => cond(isVisible, processColor('blue'), processColor('red')), [isVisible]);
+    const e = useMemo(() => event<VisibilityChangeEvent>([{
+        nativeEvent: { visible: isVisible }
+    }]), [isVisible]);
 
     useCode(() =>
         set(opacity, runTiming(clock, opacity, cond(isVisible, 1, 0.1))),
@@ -27,27 +33,24 @@ function VisiblityTrackerAnimatedItem(props: { index: number } = { index: 200 })
     return (
         <AVisibilityTracker
             collapsable={false}
-            //style={styles.default}
-            onVisibilityChanged={event<VisibilityChangeEvent>([{
-                nativeEvent: { visible: isVisible }
-            }])}
+            onVisibilityChanged={e}
             onLayout={() => isVisible.setValue(1)}
         >
             <View
                 collapsable={false}
                 style={[{
-                    backgroundColor: cond(isVisible, processColor('blue'), processColor('red')),
+                    backgroundColor: color,
                     opacity,
                     height: 100, margin: 5
                 }]}
             >
-                <Text>{props.index}</Text>
+                <Text>{index}</Text>
             </View>
         </AVisibilityTracker>
-    )
+    );
 }
 
-function VisiblityTrackerItem(props: { index: number } = { index: 200 }) {
+function VisiblityTrackerItem(props: { index: number }) {
     const [isVisible, setVisible] = useState(false);
     return (
         <VisibilityTracker
@@ -67,18 +70,22 @@ function VisiblityTrackerItem(props: { index: number } = { index: 200 }) {
     )
 }
 
-const useAnimated = false;
+const useAnimated = true;
 const Renderer = useAnimated ? VisiblityTrackerAnimatedItem : VisiblityTrackerItem;
 
 export default function App() {
-    const data = useMemo(() => new Array(200).fill(0).map((v, i) => i), []);
+    const data = useMemo(() => new Array(200).fill(0).map((v, i) => ({
+        isVisible: new Value(0),
+        opacity: new Value(0),
+        clock: new Clock()
+    })), []);
     const ref = useRef<FlatList>();
 
     return (
         <FlatList
             style={styles.default}
             data={data}
-            renderItem={({ item }) => <Renderer index={item} />}
+            renderItem={(data) => <Renderer {...data} />}
             keyExtractor={(item, index) => `WilliWoonka${index}`}
         //ref={ref => ref && setTimeout(() => ref.getScrollResponder().scrollResponderScrollTo({ x: 1, y: 20 }), 0)}
         />
