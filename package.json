@@ -1,12 +1,12 @@
 {
   "name": "react-native-visibility-tracker",
   "title": "React Native Visibility Tracker",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "react-visibility-sensor for react-native",
   "main": "src",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "node ./scripts/publish"
+    "release": "node ./scripts/publish"
   },
   "repository": {
     "type": "git",
