@@ -1,7 +1,7 @@
 
 import React, { useMemo, useEffect, useRef, useState } from 'react';
 import { SectionListProps, FlatList, StyleSheet, processColor } from 'react-native';
-import VisibilitySTracker, { VisibilityTrackerModule, VisibilityChangeEvent } from 'react-native-visibility-tracker';
+import VisibilityTracker, { VisibilityTrackerModule, VisibilityChangeEvent } from 'react-native-visibility-tracker';
 import Animated, { Easing } from 'react-native-reanimated';
 
 const {
@@ -9,7 +9,7 @@ const {
     cond, eq, add, call, set, Value, debug, concat, timing, color, modulo, invoke, dispatch, diff, useCode, lessThan, greaterThan, or, Code, map, callback, round, neq, createAnimatedComponent, Text, View, ScrollView, and, proc, Clock, multiply, onChange, not, defined, clockRunning, block, startClock, stopClock, spring
 } = Animated;
 
-const AVisibilitySensor = createAnimatedComponent(VisibilitySTracker);
+const AVisibilityTracker = createAnimatedComponent(VisibilityTracker);
 
 function VisiblityTrackerAnimatedItem(props: { index: number } = { index: 200 }) {
     const isVisible = useMemo(() => new Value(0), []);
@@ -25,7 +25,7 @@ function VisiblityTrackerAnimatedItem(props: { index: number } = { index: 200 })
     );
 
     return (
-        <AVisibilitySensor
+        <AVisibilityTracker
             collapsable={false}
             //style={styles.default}
             onVisibilityChanged={event<VisibilityChangeEvent>([{
@@ -43,14 +43,14 @@ function VisiblityTrackerAnimatedItem(props: { index: number } = { index: 200 })
             >
                 <Text>{props.index}</Text>
             </View>
-        </AVisibilitySensor>
+        </AVisibilityTracker>
     )
 }
 
 function VisiblityTrackerItem(props: { index: number } = { index: 200 }) {
     const [isVisible, setVisible] = useState(false);
     return (
-        <AVisibilitySensor
+        <VisibilityTracker
             onVisibilityChanged={e => setVisible(e.nativeEvent.visible)}
         >
             <View
@@ -63,7 +63,7 @@ function VisiblityTrackerItem(props: { index: number } = { index: 200 }) {
             >
                 <Text>{props.index}</Text>
             </View>
-        </AVisibilitySensor>
+        </VisibilityTracker>
     )
 }
 

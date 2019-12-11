@@ -3,7 +3,7 @@ import { NativeSyntheticEvent, ViewProperties } from 'react-native';
 
 declare module 'react-native-visibility-tracker' {
 
-    export type VisibilityChangeEventData = { visibile: boolean };
+    export type VisibilityChangeEventData = { visible: boolean };
 
     export type VisibilityChangeEvent = NativeSyntheticEvent<VisibilityChangeEventData>;
 
@@ -11,7 +11,7 @@ declare module 'react-native-visibility-tracker' {
         onVisibilityChanged?: (e: VisibilityChangeEvent) => (void | any)
     }
 
-    export default class VisibilitySTracker extends React.Component<VisibilityTrackerProps & ViewProperties> {
+    export default class VisibilityTracker extends React.Component<VisibilityTrackerProps & ViewProperties> {
 
     }
 
