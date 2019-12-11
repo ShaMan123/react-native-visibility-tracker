@@ -30,6 +30,10 @@ public class VisibilityTracker extends ReactViewGroup {
         }
     }
 
+    void setVisibilityListener(VisibilityListener listener) {
+        mListener = listener;
+    }
+
     private void dispatchIfNeeded() {
         dispatchIfNeeded(isShown());
     }
@@ -48,9 +52,7 @@ public class VisibilityTracker extends ReactViewGroup {
         }
     }
 
-    void setVisibilityListener(VisibilityListener listener) {
-        mListener = listener;
-    }
+
 
     /*
     visibility Methods:

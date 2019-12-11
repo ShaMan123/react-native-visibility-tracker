@@ -26,7 +26,10 @@ function VisiblityTrackerAnimatedItem({ index, item: { clock, isVisible, opacity
     }]), [isVisible]);
 
     useCode(() =>
-        set(opacity, runTiming(clock, opacity, cond(isVisible, 1, 0.1))),
+        block([
+            onChange(isVisible, stopClock(clock)),
+            set(opacity, runTiming(clock, opacity, cond(isVisible, 1, 0.1)))
+        ]),
         [clock, opacity, isVisible]
     );
 
@@ -74,11 +77,20 @@ const useAnimated = true;
 const Renderer = useAnimated ? VisiblityTrackerAnimatedItem : VisiblityTrackerItem;
 
 export default function App() {
-    const data = useMemo(() => new Array(200).fill(0).map((v, i) => ({
-        isVisible: new Value(0),
-        opacity: new Value(0),
-        clock: new Clock()
-    })), []);
+    const data = useMemo(() =>
+        new Array(200)
+            .fill(0)
+            .map((v, i) => {
+                return useAnimated ?
+                    {
+                        isVisible: new Value(0),
+                        opacity: new Value(0),
+                        clock: new Clock()
+                    } :
+                    i
+            }),
+        []
+    );
     const ref = useRef<FlatList>();
 
     return (
