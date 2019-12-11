@@ -1,0 +1,45 @@
+{
+  "name": "react-native-visibility-tracker",
+  "title": "React Native Visibility Tracker",
+  "version": "0.1.0",
+  "description": "react-visibility-sensor for react-native",
+  "main": "src",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShaMan123/react-native-visibility-tracker.git",
+    "baseUrl": "https://github.com/ShaMan123/react-native-visibility-tracker"
+  },
+  "keywords": [
+    "react-native",
+    "react-visibility-sensor",
+    "visibility",
+    "visible",
+    "hidden",
+    "viewable",
+    "viewability"
+  ],
+  "author": {
+    "name": "ShaMan123",
+    "email": "ShaMan123@github.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/react": "^16.9.16",
+    "@types/react-native": "^0.60.25",
+    "@types/react-test-renderer": "^16.9.1",
+    "react": "^16.12.0",
+    "react-native": "^0.61.5",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {}
+}
