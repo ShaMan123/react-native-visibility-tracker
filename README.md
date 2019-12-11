@@ -2,16 +2,30 @@
 
 ## Getting started
 
-`$ npm install react-native-visibility-tracker --save`
-
-### Mostly automatic installation
-
-`$ react-native link react-native-visibility-tracker`
+`$ npm install react-native-visibility-tracker --save` **OR** `$ yarn add react-native-visibility-tracker`
 
 ## Usage
-```javascript
+```ts
 import VisibilityTracker from 'react-native-visibility-tracker';
 
-// TODO: What to do with the module?
-VisibilityTracker;
+function VisiblityTrackerItem(props: { index: number }) {
+    const [isVisible, setVisible] = useState(false);
+    return (
+        <VisibilityTracker
+            onVisibilityChanged={e => setVisible(e.nativeEvent.visible)}
+        >
+            <View
+                collapsable={false}
+                style={[{
+                    backgroundColor: isVisible ? 'blue' : 'red',
+                    height: 100,
+                    margin: 5
+                }]}
+            >
+                <Text>{props.index}</Text>
+            </View>
+        </VisibilityTracker>
+    )
+}
+
 ```
