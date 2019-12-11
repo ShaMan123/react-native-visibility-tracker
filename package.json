@@ -16,11 +16,15 @@
   "keywords": [
     "react-native",
     "react-visibility-sensor",
+    "react-native-visibility-sensor",
+    "react-native-visibility-tracker",
     "visibility",
     "visible",
     "hidden",
     "viewable",
-    "viewability"
+    "viewability",
+    "viewport",
+    "tracker"
   ],
   "author": {
     "name": "ShaMan123",
@@ -42,5 +46,6 @@
     "react-native": "^0.61.5",
     "typescript": "^3.7.3"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "types": "react-native-visibility-tracker.d.ts"
 }
