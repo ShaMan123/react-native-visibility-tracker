@@ -1,7 +1,7 @@
 {
   "name": "react-native-visibility-tracker",
   "title": "React Native Visibility Tracker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "react-visibility-sensor for react-native",
   "main": "src",
   "scripts": {
