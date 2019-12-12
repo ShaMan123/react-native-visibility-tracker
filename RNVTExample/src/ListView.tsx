@@ -73,10 +73,9 @@ function VisiblityTrackerItem(props: { index: number }) {
     )
 }
 
-const useAnimated = true;
-const Renderer = useAnimated ? VisiblityTrackerAnimatedItem : VisiblityTrackerItem;
+export default function ListView({ useAnimated }: { useAnimated?: boolean }) {
+    const Renderer = useMemo(() => useAnimated ? VisiblityTrackerAnimatedItem : VisiblityTrackerItem, [useAnimated]);
 
-export default function App() {
     const data = useMemo(() =>
         new Array(200)
             .fill(0)
@@ -89,9 +88,10 @@ export default function App() {
                     } :
                     i
             }),
-        []
+        [useAnimated]
     );
-    const ref = useRef<FlatList>();
+
+    //const ref = useRef<FlatList<pip>>();
 
     return (
         <FlatList
