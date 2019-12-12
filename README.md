@@ -7,6 +7,11 @@ Why not `react-native-inviewport`? It's `js` based. This library is native and c
 
 PRs are welcome.
 
+
+![demo](./docs/RNVT.gif)
+
+
+
 ## Getting started
 
 `$ npm install react-native-visibility-tracker --save` **OR** `$ yarn add react-native-visibility-tracker`
