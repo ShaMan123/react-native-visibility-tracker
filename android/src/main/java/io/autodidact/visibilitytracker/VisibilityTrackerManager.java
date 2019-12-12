@@ -40,7 +40,6 @@ public class VisibilityTrackerManager extends ReactViewManager {
             @Override
             public void onChange(boolean isVisible, boolean dispatchEvent) {
                 if (dispatchEvent) {
-                    Log.d("Invoke", "onChange: " + isVisible + "   "+   view.getId());
                     VisibilityEvent e = VisibilityEvent.obtain(view.getId(), isVisible);
                     eventDispatcher.dispatchEvent(e);
                 }
