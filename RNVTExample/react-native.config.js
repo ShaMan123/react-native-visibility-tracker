@@ -9,9 +9,6 @@ module.exports = {
     dependencies: {
         'react-native-visibility-tracker': {
             root,
-        },
-        'react-native-reanimated': {
-            root: path.resolve(__dirname, '..', '..', 'react-native-reanimated')
         }
     },
 };
